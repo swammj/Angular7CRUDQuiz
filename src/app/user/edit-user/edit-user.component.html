@@ -1,0 +1,31 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Updating User {{ username2 }}</h1>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-left has-icons-right">
+          
+          <input value='{{username2}} 'class="input" type="text" formControlName="username" [ngClass]="{ 'is-danger': submitted && f.username.errors }">
+        </div>
+        <p class="help is-danger" *ngIf="submitted && f.title.errors">Username is required</p>
+      </div>
+      <div class="field">
+        <label class="label">Role</label>
+        <div class="control has-icons-left has-icons-right">
+          <div class="select" [ngClass]="{ 'is-danger': submitted && f.role.errors }">
+            <select formControlName="role" (change)="updateRole($event)">
+              <option [value]="0">ADMIN</option>
+              <option [value]="1">EDITOR</option>
+              <option [value]="2">VIEWER</option>
+            </select>
+          </div>
+        </div>
+        <p class="help is-danger" *ngIf="submitted && f.role.errors">Select one Role</p>
+      </div>
+      <div class="container">
+          <button type="submit" class="button is-info">Update User</button>
+      </div>
+    </form>
+  </div>
+</section>
